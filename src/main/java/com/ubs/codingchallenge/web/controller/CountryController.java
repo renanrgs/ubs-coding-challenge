@@ -1,6 +1,6 @@
-package com.ubs.codingchallenge.controller;
+package com.ubs.codingchallenge.web.controller;
 
-import com.ubs.codingchallenge.service.CountryService;
+import com.ubs.codingchallenge.web.service.CountryService;
 import com.ubs.codingchallenge.web.model.CountryListDTO;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +21,12 @@ public class CountryController {
     }
 
     @GetMapping(value = "/subregion/{subregion}")
-    public CountryListDTO getCountriesBySubRegionContainingOver3Boardes(@PathVariable String subregion) {
+    public @ResponseBody CountryListDTO getCountriesBySubRegionContainingOver3Boardes(@PathVariable String subregion) {
         return countryService.findBySubregionContainingOver3Boarders(subregion);
     }
 
     @GetMapping(value = "/subregion/{subregion}/population")
-    public CountryListDTO getSubregionPopulation(@PathVariable String subregion) {
+    public @ResponseBody CountryListDTO getSubregionPopulation(@PathVariable String subregion) {
         return countryService.findSubregionPopulation(subregion);
     }
 

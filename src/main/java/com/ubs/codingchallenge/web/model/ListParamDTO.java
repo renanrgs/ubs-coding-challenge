@@ -1,7 +1,6 @@
 package com.ubs.codingchallenge.web.model;
 
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ListParamDTO<T> {
 
-    @JsonUnwrapped
+    @JsonValue
     private List<T> list;
 
     public List<T> getList () {

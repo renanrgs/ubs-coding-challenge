@@ -1,4 +1,4 @@
-package com.ubs.codingchallenge.service;
+package com.ubs.codingchallenge.web.service;
 
 import com.ubs.codingchallenge.web.model.CountryListDTO;
 

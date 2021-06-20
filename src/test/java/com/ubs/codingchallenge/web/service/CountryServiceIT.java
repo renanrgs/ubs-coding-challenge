@@ -1,7 +1,6 @@
-package com.ubs.codingchallenge.service;
+package com.ubs.codingchallenge.web.service;
 
 import com.ubs.codingchallenge.web.model.CountryListDTO;
-import com.ubs.codingchallenge.web.model.SubregionAggregateDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

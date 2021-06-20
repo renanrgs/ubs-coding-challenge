@@ -11,5 +11,9 @@ import java.util.List;
 @Builder
 public class SubregionAggregateDTO {
     private Long totalPopulation;
-    private List<CountryDTO> countries;
+    private CountryListDTO countryListDTO;
+
+    public SubregionAggregateDTO(CountryListDTO countryListDTO) {
+        this.countryListDTO = countryListDTO;
+    }
 }

@@ -23,12 +23,6 @@ class CountryClientIT {
     }
 
     @Test
-    void givenARegion_thenReturnCountryList() {
-        List<CountryDTO> countries = client.getCountriesByRegion("Americas");
-        assertThat(countries, notNullValue());
-    }
-
-    @Test
     void testFindAll(){
         List<CountryDTO> countries = client.findAll();
         assertThat(countries, notNullValue());

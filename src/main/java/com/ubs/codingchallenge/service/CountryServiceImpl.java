@@ -35,14 +35,6 @@ public class CountryServiceImpl implements CountryService {
         return countries;
     }
 
-//    @Override
-//    public List<CountryDTO> findTenBiggestCountriesByRegion(String region) {
-//        List<CountryDTO> countries = client.getCountriesByRegion(region);
-//        fillCountryBorders(countries);
-//        countries = getReverseSortedCountries(countries);
-//        return countries;
-//    }
-
     private List<CountryDTO> getReverseSortedCountries(List<CountryDTO> countries) {
         return countries.stream()
                 .filter(c -> !ObjectUtils.isEmpty(c.getArea()))

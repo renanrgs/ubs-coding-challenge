@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
-import com.ubs.codingchallenge.converter.CountryCsvConverter;
+import com.ubs.codingchallenge.serializer.CountryCsvSerializer;
 import com.ubs.codingchallenge.serializer.CountryJSONSerializer;
 import lombok.*;
 
@@ -41,8 +41,10 @@ public class CountryDTO implements Serializable {
 
     @JsonSerialize(using = CountryJSONSerializer.class)
     @JsonInclude(NON_ABSENT)
-    @CsvCustomBindByName(converter = CountryCsvConverter.class)
+    @CsvCustomBindByName(converter = CountryCsvSerializer.class)
     private List<CountryDTO> borders;
+
+    @CsvBindByName
     private String alpha3Code;
 
     public CountryDTO(String alpha3Code) {

@@ -1,4 +1,4 @@
-package com.ubs.codingchallenge.converter;
+package com.ubs.codingchallenge.serializer;
 
 import com.opencsv.bean.AbstractBeanField;
 import com.opencsv.exceptions.CsvConstraintViolationException;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class CountryCsvConverter extends AbstractBeanField<CountryDTO, Integer> {
+public class CountryCsvSerializer extends AbstractBeanField<CountryDTO, Integer> {
 
     @Override
     protected String convertToWrite(Object obj) {

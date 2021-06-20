@@ -1,6 +1,7 @@
 package com.ubs.codingchallenge.service;
 
 import com.ubs.codingchallenge.web.model.CountryDTO;
+import com.ubs.codingchallenge.web.model.SubregionAggregateDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,11 +26,13 @@ public class CountryServiceIT {
 
     @Test
     void findBySubregionContainingOver3Boarders() {
-        List<CountryDTO> countries = countryService.findBySubregionContainingOver3Boarders("South America");
+        List<CountryDTO> countries = countryService.findBySubregionContainingOver3Boarders("southamerica");
         assertThat(countries, notNullValue());
     }
 
     @Test
     void findSubregionPopulation() {
+        SubregionAggregateDTO subregionAggregateDTO = countryService.findSubregionPopulation("South America");
+        assertThat(subregionAggregateDTO, notNullValue());
     }
 }

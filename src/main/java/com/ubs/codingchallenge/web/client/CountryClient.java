@@ -15,7 +15,7 @@ import java.util.List;
 public class CountryClient {
     private static final String COUNTRY_API_V2 = "/rest/v2/region/";
     private static final String params = "?fields=name;capital;region;subregion;population;area;borders;alpha3Code";
-    public static final String COUNTRY_SUBREGION_API_V2 = "/rest/v2/all";
+    public static final String COUNTRY_ALL_API_V2 = "/rest/v2/all";
 
     private String apiHost;
 
@@ -37,7 +37,7 @@ public class CountryClient {
     }
     public List<CountryDTO> findAll() {
         ResponseEntity<CountryDTO[]> responseEntity = restTemplate
-                .getForEntity(apiHost + COUNTRY_SUBREGION_API_V2 + params, CountryDTO[].class);
+                .getForEntity(apiHost + COUNTRY_ALL_API_V2 + params, CountryDTO[].class);
         CountryDTO[] countries = responseEntity.getBody();
         return Arrays.asList(countries);
     }

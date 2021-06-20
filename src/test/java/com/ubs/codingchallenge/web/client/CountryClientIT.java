@@ -19,11 +19,11 @@ class CountryClientIT {
     private CountryClient client;
 
     @BeforeEach
-    void setUp() throws InterruptedException {
+    void setUp() {
     }
 
     @Test
-    void givenARegion_thenReturnCountryList() throws JsonProcessingException {
+    void givenARegion_thenReturnCountryList() {
         List<CountryDTO> countries = client.getCountriesByRegion("Americas");
         assertThat(countries, notNullValue());
     }

@@ -13,6 +13,7 @@ public class JsonTest {
         String json = "{\"name\":\"Åland Islands\",\"capital\":\"Mariehamn\",\"region\":\"Europe\",\"subregion\":\"Northern Europe\",\"population\":28875,\"area\":1580.0,\"borders\":[]}";
 
         CountryDTO c = mapper.readValue(json, CountryDTO.class);
-        System.out.println(c);
+
+
     }
 }

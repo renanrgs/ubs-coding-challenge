@@ -8,7 +8,7 @@ import com.ubs.codingchallenge.web.model.CountryDTO;
 import java.io.IOException;
 import java.util.List;
 
-public class CountryJSONSerializer extends JsonSerializer<List<CountryDTO>> {
+public class CountryBorderJsonSerializer extends JsonSerializer<List<CountryDTO>> {
 
 
     @Override

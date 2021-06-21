@@ -1,9 +1,6 @@
 package com.ubs.codingchallenge.web.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,8 +10,5 @@ import java.util.List;
 @Builder
 public class CountryListDTO extends ListParamDTO<CountryDTO>{
 
-    public CountryListDTO(List<CountryDTO> list) {
-        super(list);
-    }
 }
 

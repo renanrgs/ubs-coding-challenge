@@ -39,20 +39,20 @@ public class CsvHttpMessageConverter<T, L extends ListParamDTO<T>>
 
     @SuppressWarnings("unchecked")
     @Override
-    protected void writeInternal (L l, HttpOutputMessage outputMessage)
+    protected void writeInternal (L data, HttpOutputMessage outputMessage)
             throws IOException, HttpMessageNotWritableException {
 
         HeaderColumnNameMappingStrategy<T> strategy = new HeaderColumnNameMappingStrategy<>();
-        strategy.setType(toBeanType(l.getClass().getGenericSuperclass()));
+        strategy.setType(toBeanType(data.getClass().getGenericSuperclass()));
 
         OutputStreamWriter outputStream = new OutputStreamWriter(outputMessage.getBody());
         StatefulBeanToCsv<T> beanToCsv =
                 new StatefulBeanToCsvBuilder(outputStream)
-                        .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
+
                         .withMappingStrategy(strategy)
                         .build();
         try {
-            beanToCsv.write(l.getList());
+            beanToCsv.write(data.getList());
             outputStream.close();
         } catch (Exception e) {
             throw new RuntimeException(e);

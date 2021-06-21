@@ -1,5 +1,6 @@
 package com.ubs.codingchallenge.web.controller;
 
+import com.ubs.codingchallenge.web.model.SubregionAggregateListDTO;
 import com.ubs.codingchallenge.web.service.CountryService;
 import com.ubs.codingchallenge.web.model.CountryListDTO;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,8 @@ public class CountryController {
     }
 
     @GetMapping(value = "/subregion/{subregion}/population")
-    public @ResponseBody CountryListDTO getSubregionPopulation(@PathVariable String subregion) {
+    public @ResponseBody
+    SubregionAggregateListDTO getSubregionPopulation(@PathVariable String subregion) {
         return countryService.findSubregionPopulation(subregion);
     }
 

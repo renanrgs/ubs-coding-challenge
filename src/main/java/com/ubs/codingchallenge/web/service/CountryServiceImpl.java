@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.singletonList;
+import static java.util.Comparator.comparing;
 import static java.util.Comparator.comparingDouble;
 import static org.springframework.util.StringUtils.trimAllWhitespace;
 
@@ -44,7 +45,7 @@ public class CountryServiceImpl implements CountryService {
         return countries.stream()
                 .filter(c -> !ObjectUtils.isEmpty(c.getArea()))
                 .sorted(Collections
-                        .reverseOrder(comparingDouble(CountryDTO::getArea))).limit(10)
+                        .reverseOrder(comparing(CountryDTO::getArea))).limit(10)
                 .collect(Collectors.toList());
     }
 

@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
-import com.ubs.codingchallenge.serializer.CountryBorderJsonSerializer;
-import com.ubs.codingchallenge.serializer.CountryCsvSerializer;
+import com.ubs.codingchallenge.serializer.json.CountryBorderJsonSerializer;
+import com.ubs.codingchallenge.serializer.csv.CountryCsvSerializer;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT;
@@ -38,7 +39,7 @@ public class CountryDTO implements Serializable {
     private Long population;
 
     @CsvBindByName
-    private Double area;
+    private BigDecimal area;
 
     @JsonSerialize(using = CountryBorderJsonSerializer.class)
     @JsonInclude(NON_ABSENT)

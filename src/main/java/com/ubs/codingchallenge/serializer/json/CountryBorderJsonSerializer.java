@@ -1,4 +1,4 @@
-package com.ubs.codingchallenge.serializer;
+package com.ubs.codingchallenge.serializer.json;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

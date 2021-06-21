@@ -4,6 +4,7 @@ import com.ubs.codingchallenge.web.dto.CountryDTO;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class CsvTest {
                 .name("Brazil")
                 .alpha3Code("BRA")
                 .capital("Brasilia")
-                .area(1234.0)
+                .area(BigDecimal.valueOf(1234.0))
                 .subregion("South America").borders(borders)
                 .build();
 

@@ -1,4 +1,4 @@
-package com.ubs.codingchallenge.serializer;
+package com.ubs.codingchallenge.serializer.csv;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.AbstractBeanField;

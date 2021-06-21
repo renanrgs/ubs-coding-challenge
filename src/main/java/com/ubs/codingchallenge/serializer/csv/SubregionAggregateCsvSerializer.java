@@ -1,4 +1,4 @@
-package com.ubs.codingchallenge.serializer;
+package com.ubs.codingchallenge.serializer.csv;
 
 import com.opencsv.bean.AbstractBeanField;
 import com.ubs.codingchallenge.web.dto.CountryDTO;

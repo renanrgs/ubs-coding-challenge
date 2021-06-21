@@ -2,7 +2,7 @@ package com.ubs.codingchallenge.web.dto;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
-import com.ubs.codingchallenge.serializer.SubregionAggregateCsvSerializer;
+import com.ubs.codingchallenge.serializer.csv.SubregionAggregateCsvSerializer;
 import lombok.*;
 
 import java.io.Serializable;

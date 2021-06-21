@@ -1,6 +1,6 @@
 package com.ubs.codingchallenge.web.client;
 
-import com.ubs.codingchallenge.web.model.CountryDTO;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

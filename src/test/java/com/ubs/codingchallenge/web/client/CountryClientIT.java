@@ -1,7 +1,6 @@
 package com.ubs.codingchallenge.web.client;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.ubs.codingchallenge.web.model.CountryDTO;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

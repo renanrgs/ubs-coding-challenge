@@ -3,7 +3,7 @@ package com.ubs.codingchallenge.serializer;
 import com.opencsv.bean.AbstractBeanField;
 import com.opencsv.exceptions.CsvConstraintViolationException;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.ubs.codingchallenge.web.model.CountryDTO;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
 
 import java.util.List;
 
@@ -13,28 +13,29 @@ public class SubregionAggregateCsvSerializer extends AbstractBeanField<CountryDT
 
     @Override
     protected Object convert(String s) throws CsvDataTypeMismatchException, CsvConstraintViolationException {
+        //TODO - Deserialize
         return null;
     }
 
     @Override
     protected String convertToWrite(Object obj) {
-        final StringBuilder s = new StringBuilder();
+        final StringBuilder data = new StringBuilder();
         List<CountryDTO> countries =  (List<CountryDTO>)obj;
         countries.forEach(c -> {
-            s.append("Name;").append(c.getName()).append("|")
+            data.append("Name;").append(c.getName()).append("|")
                     .append("Capital;").append(c.getCapital()).append("|")
                     .append("Alpha3Code;").append(c.getAlpha3Code()).append("|")
                     .append("Subregion;").append(c.getSubregion()).append("|")
                     .append("Region;").append(c.getRegion()).append("|")
                     .append("Area;").append(c.getArea()).append("|")
                     .append("Population;").append(c.getPopulation()).append("|").append(newLineChar);
-            s.append('[');
+            data.append('[');
             c.getBorders().forEach(border -> {
-                s.append(border.getAlpha3Code()).append("|");
+                data.append(border.getAlpha3Code()).append("|");
             });
-            s.append(']');
+            data.append(']');
         });
 
-        return s.toString();
+        return data.toString();
     }
 }

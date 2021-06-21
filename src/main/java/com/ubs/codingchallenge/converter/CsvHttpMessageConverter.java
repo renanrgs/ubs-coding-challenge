@@ -1,10 +1,9 @@
 package com.ubs.codingchallenge.converter;
 
-import com.opencsv.CSVWriter;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import com.ubs.codingchallenge.web.model.ListParamDTO;
+import com.ubs.codingchallenge.web.model.ResourceWrapper;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -19,7 +18,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 @Component
-public class CsvHttpMessageConverter<T, L extends ListParamDTO<T>>
+public class CsvHttpMessageConverter<T, L extends ResourceWrapper<T>>
         extends AbstractHttpMessageConverter<L> {
 
     public CsvHttpMessageConverter () {
@@ -28,7 +27,7 @@ public class CsvHttpMessageConverter<T, L extends ListParamDTO<T>>
 
     @Override
     protected boolean supports (Class<?> clazz) {
-        return ListParamDTO.class.isAssignableFrom(clazz);
+        return ResourceWrapper.class.isAssignableFrom(clazz);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class CsvHttpMessageConverter<T, L extends ListParamDTO<T>>
                         .withMappingStrategy(strategy)
                         .build();
         try {
-            beanToCsv.write(data.getList());
+            beanToCsv.write(data.getData());
             outputStream.close();
         } catch (Exception e) {
             throw new RuntimeException(e);

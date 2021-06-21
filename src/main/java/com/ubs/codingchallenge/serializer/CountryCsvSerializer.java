@@ -4,7 +4,7 @@ import com.opencsv.CSVWriter;
 import com.opencsv.bean.AbstractBeanField;
 import com.opencsv.exceptions.CsvConstraintViolationException;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.ubs.codingchallenge.web.model.CountryDTO;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
 
 import java.util.List;
 

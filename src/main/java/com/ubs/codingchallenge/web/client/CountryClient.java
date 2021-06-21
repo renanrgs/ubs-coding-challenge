@@ -1,6 +1,6 @@
 package com.ubs.codingchallenge.web.client;
 
-import com.ubs.codingchallenge.web.model.CountryDTO;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;

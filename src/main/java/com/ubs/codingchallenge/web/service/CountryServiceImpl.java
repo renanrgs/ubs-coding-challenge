@@ -1,16 +1,20 @@
 package com.ubs.codingchallenge.web.service;
 
 import com.ubs.codingchallenge.web.client.CountryClient;
-import com.ubs.codingchallenge.web.model.CountryDTO;
-import com.ubs.codingchallenge.web.model.CountryListDTO;
-import com.ubs.codingchallenge.web.model.SubregionAggregateDTO;
-import com.ubs.codingchallenge.web.model.SubregionAggregateListDTO;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
+import com.ubs.codingchallenge.web.model.CountryWrapper;
+import com.ubs.codingchallenge.web.dto.SubregionDTO;
+import com.ubs.codingchallenge.web.model.SubregionWrapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.singletonList;
 import static java.util.Comparator.comparingDouble;
 import static org.springframework.util.StringUtils.trimAllWhitespace;
 
@@ -24,15 +28,15 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public CountryListDTO findTenBiggestCountriesByRegion(String region) {
+    public CountryWrapper findTenBiggestCountriesByRegion(String region) {
         List<CountryDTO> countries = client.findAll();
         fillCountryBorders(countries);
         countries = countries.stream()
                 .filter(c -> c.getRegion().equalsIgnoreCase(region))
                 .collect(Collectors.toList());
         countries = getReverseSortedCountries(countries);
-        CountryListDTO countryListDTO = getCountryList(countries);
-        return countryListDTO;
+        CountryWrapper countryWrapper = wrap(countries);
+        return countryWrapper;
     }
 
     private List<CountryDTO> getReverseSortedCountries(List<CountryDTO> countries) {
@@ -44,32 +48,32 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public CountryListDTO findBySubregionContainingOver3Boarders(String subregion) {
+    public CountryWrapper findBySubregionContainingOver3Boarders(String subregion) {
         List<CountryDTO> countries = client.findAll();
         fillCountryBorders(countries);
         countries = filterBySubRegionAndBoardersAmount(subregion, countries);
-        CountryListDTO countryListDTO = getCountryList(countries);
-        return countryListDTO;
+        CountryWrapper wrapper = wrap(countries);
+        return wrapper;
     }
 
-    private CountryListDTO getCountryList(List<CountryDTO> countries) {
-        CountryListDTO countryListDTO = new CountryListDTO();
-        countryListDTO.setList(countries);
-        return countryListDTO;
+    private CountryWrapper wrap(List<CountryDTO> countries) {
+        CountryWrapper countryWrapper = new CountryWrapper();
+        countryWrapper.setData(countries);
+        return countryWrapper;
     }
 
     @Override
-    public SubregionAggregateListDTO findSubregionPopulation(String subregion) {
+    public SubregionWrapper findSubregionPopulation(String subregion) {
         List<CountryDTO> countries = client.findAll();
         fillCountryBorders(countries);
         countries = countries.stream()
                 .filter(countryDTO -> trimAllWhitespace(countryDTO.getSubregion()).equalsIgnoreCase(subregion))
                 .collect(Collectors.toList());
-        SubregionAggregateDTO subregionAggregateDTO = buildSubRegion(countries);
-        calculateTotalPopulation(subregionAggregateDTO);
-        SubregionAggregateListDTO subregionAggregateListDTO = new SubregionAggregateListDTO();
-        subregionAggregateListDTO.setList(Arrays.asList(subregionAggregateDTO));
-        return subregionAggregateListDTO;
+        SubregionDTO subregionDTO = buildSubRegion(countries);
+        calculateTotalPopulation(subregionDTO);
+        SubregionWrapper subregionWrapper = new SubregionWrapper();
+        subregionWrapper.setData(singletonList(subregionDTO));
+        return subregionWrapper;
     }
 
     private List<CountryDTO> filterBySubRegionAndBoardersAmount(String subregion, List<CountryDTO> countries) {
@@ -94,17 +98,17 @@ public class CountryServiceImpl implements CountryService {
         });
     }
 
-    private SubregionAggregateDTO buildSubRegion(List<CountryDTO> countries) {
-        SubregionAggregateDTO subregionAggregateDTO = new SubregionAggregateDTO();
-        subregionAggregateDTO.setCountries(countries);
-        return subregionAggregateDTO;
+    private SubregionDTO buildSubRegion(List<CountryDTO> countries) {
+        SubregionDTO subregionDTO = new SubregionDTO();
+        subregionDTO.setCountries(countries);
+        return subregionDTO;
     }
 
-    private void calculateTotalPopulation(SubregionAggregateDTO subregionAggregateDTO) {
-        Long totalPopulation = subregionAggregateDTO.getCountries()
+    private void calculateTotalPopulation(SubregionDTO subregionDTO) {
+        Long totalPopulation = subregionDTO.getCountries()
                 .stream()
                 .map(CountryDTO::getPopulation)
                 .reduce(Long::sum).get();
-        subregionAggregateDTO.setTotalPopulation(totalPopulation);
+        subregionDTO.setTotalPopulation(totalPopulation);
     }
 }

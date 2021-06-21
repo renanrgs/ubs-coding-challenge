@@ -1,8 +1,9 @@
-package com.ubs.codingchallenge.web.model;
+package com.ubs.codingchallenge.web.dto;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import com.ubs.codingchallenge.serializer.SubregionAggregateCsvSerializer;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
 import lombok.*;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubregionAggregateDTO {
+public class SubregionDTO {
 
     @CsvBindByName
     private Long totalPopulation;

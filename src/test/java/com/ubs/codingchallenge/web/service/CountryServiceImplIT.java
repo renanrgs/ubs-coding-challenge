@@ -1,10 +1,9 @@
 package com.ubs.codingchallenge.web.service;
 
 import com.ubs.codingchallenge.util.TestUtil;
-import com.ubs.codingchallenge.web.model.CountryDTO;
-import com.ubs.codingchallenge.web.model.CountryListDTO;
-import com.ubs.codingchallenge.web.model.SubregionAggregateListDTO;
-import org.junit.jupiter.api.Test;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
+import com.ubs.codingchallenge.web.model.CountryWrapper;
+import com.ubs.codingchallenge.web.model.SubregionWrapper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -22,20 +21,19 @@ public class CountryServiceImplIT {
     @Autowired
     private CountryService countryService;
 
-    @ParameterizedTest
+    @ParameterizedTest()
     @MethodSource("oceaniaCountriesProvider")
     void findTenBiggestCountriesByRegion(List<CountryDTO> expectedCountries) {
         //given
         String region = "oceania";
 
         //when
-        CountryListDTO countries
-                = countryService.findTenBiggestCountriesByRegion(region);
+        CountryWrapper countries = countryService.findTenBiggestCountriesByRegion(region);
 
         //then
-        assertThat(countries.getList()).hasSize(10);
-        assertThat(countries.getList()).containsSequence(expectedCountries);
-        assertThat(countries.getList()).containsExactlyElementsOf(expectedCountries);
+        assertThat(countries.getData()).hasSize(10);
+        assertThat(countries.getData()).containsExactlyElementsOf(expectedCountries);
+        assertThat(countries.getData()).containsSequence(expectedCountries);
     }
 
     @ParameterizedTest
@@ -45,25 +43,41 @@ public class CountryServiceImplIT {
         String southamerica = "southamerica";
 
         //when
-        CountryListDTO countries = countryService.findBySubregionContainingOver3Boarders(southamerica);
+        CountryWrapper countries = countryService.findBySubregionContainingOver3Boarders(southamerica);
 
         //then
         assertThat(countries).isNotNull();
-        assertThat(countries.getList()).hasSize(6);
-        assertThat(countries.getList()).containsExactlyInAnyOrderElementsOf(expectedCountries);
+        assertThat(countries.getData()).hasSize(6);
+        assertThat(countries.getData()).containsExactlyInAnyOrderElementsOf(expectedCountries);
     }
 
-    @Test
-    void findSubregionPopulation() {
-        SubregionAggregateListDTO subregionAggregateDTO = countryService.findSubregionPopulation("southamerica");
-        assertThat(subregionAggregateDTO).isNotNull();
+    @ParameterizedTest
+    @MethodSource("allSouthAmericaCountriesProvider")
+    void findSubregionPopulation(List<CountryDTO> expectedCountries) {
+        //given
+        String subregion = "southamerica";
+
+        //when
+        SubregionWrapper subregionWrapper = countryService.findSubregionPopulation(subregion);
+
+        //then
+        assertThat(subregionWrapper).isNotNull();
+        assertThat(subregionWrapper.getData()).isNotNull();
+        assertThat(subregionWrapper.getData().get(0)).isNotNull();
+        assertThat(subregionWrapper.getData().get(0).getTotalPopulation()).isNotNull();
+        assertThat(subregionWrapper.getData().get(0).getCountries())
+                .containsExactlyInAnyOrderElementsOf(expectedCountries);
     }
 
-    private static Stream<Arguments> southAmericaCountriesProvider(){
+    private static Stream<Arguments> southAmericaCountriesProvider() {
         return TestUtil.southAmericaCountriesProvider();
     }
 
-    private static Stream<Arguments> oceaniaCountriesProvider(){
+    private static Stream<Arguments> allSouthAmericaCountriesProvider() {
+        return TestUtil.allSouthAmericaCountriesProvider();
+    }
+
+    private static Stream<Arguments> oceaniaCountriesProvider() {
         return TestUtil.oceaniaCountriesProvider();
     }
 }

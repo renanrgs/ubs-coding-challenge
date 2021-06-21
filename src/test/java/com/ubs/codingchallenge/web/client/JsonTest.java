@@ -2,7 +2,7 @@ package com.ubs.codingchallenge.web.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ubs.codingchallenge.web.model.CountryDTO;
+import com.ubs.codingchallenge.web.dto.CountryDTO;
 import org.junit.jupiter.api.Test;
 
 public class JsonTest {

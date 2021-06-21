@@ -11,17 +11,17 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListParamDTO<T> {
+public class ResourceWrapper<T> {
 
     @JsonValue
-    private List<T> list;
+    private List<T> data;
 
-    public List<T> getList () {
-        return list;
+    public List<T> getData() {
+        return data;
     }
 
-    public void setList (List<T> list) {
-        this.list = list;
+    public void setData(List<T> data) {
+        this.data = data;
     }
 
 }

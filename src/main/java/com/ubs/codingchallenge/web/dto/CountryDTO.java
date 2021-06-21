@@ -1,4 +1,4 @@
-package com.ubs.codingchallenge.web.model;
+package com.ubs.codingchallenge.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

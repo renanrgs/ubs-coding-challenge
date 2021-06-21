@@ -12,15 +12,13 @@ public class CountryCsvSerializer extends AbstractBeanField<CountryDTO, Integer>
 
     @Override
     protected String convertToWrite(Object obj) {
-        StringBuilder s = new StringBuilder();
+        StringBuilder data = new StringBuilder();
         List<CountryDTO> countries =  (List<CountryDTO>)obj;
-        s.append('[');
-        countries.forEach(c -> {
-            s.append(c.getAlpha3Code()).append(CSVWriter.DEFAULT_SEPARATOR);
-        });
-        s.replace(s.length() - 1, s.length() , "]");
+        data.append("[");
+        countries.forEach(c -> data.append(c.getAlpha3Code()).append(CSVWriter.DEFAULT_SEPARATOR));
+        data.replace(data.length() - 1, data.length() , "]");
 
-        return s.toString();
+        return data.length() == 1 ? "" : data.toString();
     }
 
     @Override

@@ -1,9 +1,12 @@
 package com.ubs.codingchallenge.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ubs.codingchallenge.web.dto.CountryDTO;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class TestUtil {
@@ -71,5 +74,35 @@ public class TestUtil {
                 newCaledonia, fiji, vanuatu, frenchPolynesia, samoa, kiribati));
 
         return Stream.of(oceaniaArguments);
+    }
+
+    public static List<CountryDTO> oceaniaCountryWrapperPovider() throws JsonProcessingException {
+
+        String json = "[{\"name\":\"Australia\",\"capital\":\"Canberra\",\"region\":\"Oceania\",\"subregion" +
+                "\":\"Australia and New Zealand\",\"population\":24117360,\"area\":7692024.0,\"borders\":[]," +
+                "\"alpha3Code\":\"AUS\"},{\"name\":\"Papua New Guinea\",\"capital\":\"Port Moresby\",\"region\"" +
+                ":\"Oceania\",\"subregion\":\"Melanesia\",\"population\":8083700,\"area\":462840.0,\"borders" +
+                "\":[{\"name\":\"Indonesia\",\"capital\":\"Jakarta\",\"region\":\"Asia\",\"subregion\":" +
+                "\"South-Eastern Asia\",\"population\":258705000,\"area\":1904569.0,\"alpha3Code\":\"IDN" +
+                "\"}],\"alpha3Code\":\"PNG\"},{\"name\":\"New Zealand\",\"capital\":\"Wellington\",\"region" +
+                "\":\"Oceania\",\"subregion\":\"Australia and New Zealand\",\"population\":4697854,\"area" +
+                "\":270467.0,\"borders\":[],\"alpha3Code\":\"NZL\"},{\"name\":\"Solomon Islands\"," +
+                "\"capital\":\"Honiara\",\"region\":\"Oceania\",\"subregion\":\"Melanesia\",\"population" +
+                "\":642000,\"area\":28896.0,\"borders\":[],\"alpha3Code\":\"SLB\"},{\"name\":\"New Caledonia" +
+                "\",\"capital\":\"Nouméa\",\"region\":\"Oceania\",\"subregion\":\"Melanesia\"," +
+                "\"population\":268767,\"area\":18575.0,\"borders\":[],\"alpha3Code\":\"NCL\"},{\"name\":" +
+                "\"Fiji\",\"capital\":\"Suva\",\"region\":\"Oceania\",\"subregion\":\"Melanesia\",\"population" +
+                "\":867000,\"area\":18272.0,\"borders\":[],\"alpha3Code\":\"FJI\"},{\"name\":\"Vanuatu\",\"capital" +
+                "\":\"Port Vila\",\"region\":\"Oceania\",\"subregion\":\"Melanesia\",\"population\":277500," +
+                "\"area\":12189.0,\"borders\":[],\"alpha3Code\":\"VUT\"},{\"name\":\"French Polynesia\",\"capital" +
+                "\":\"Papeetē\",\"region\":\"Oceania\",\"subregion\":\"Polynesia\",\"population\":271800,\"area" +
+                "\":4167.0,\"borders\":[],\"alpha3Code\":\"PYF\"},{\"name\":\"Samoa\",\"capital\":\"Apia\",\"region" +
+                "\":\"Oceania\",\"subregion\":\"Polynesia\",\"population\":194899,\"area\":2842.0,\"borders\":[]" +
+                ",\"alpha3Code\":\"WSM\"},{\"name\":\"Kiribati\",\"capital\":\"South Tarawa\",\"region\":\"Oceania" +
+                "\",\"subregion\":\"Micronesia\",\"population\":113400,\"area\":811.0,\"borders\":[],\"alpha3Code" +
+                "\":\"KIR\"}]";
+        ObjectMapper mapper = new ObjectMapper();
+        List<CountryDTO> countries = mapper.readValue(json, List.class);
+        return countries;
     }
 }

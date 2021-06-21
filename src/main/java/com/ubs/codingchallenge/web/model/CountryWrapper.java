@@ -6,11 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Builder
-public class CountryWrapper extends ResourceWrapper<CountryDTO> {
+public class CountryWrapper extends ResourceWrapper<CountryDTO> implements Serializable {
 
+    private static final long serialVersionUID = -4797796981862933941L;
 }
 

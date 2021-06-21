@@ -6,6 +6,7 @@ import com.ubs.codingchallenge.serializer.SubregionAggregateCsvSerializer;
 import com.ubs.codingchallenge.web.dto.CountryDTO;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -13,8 +14,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubregionDTO {
+public class SubregionDTO implements Serializable {
 
+    private static final long serialVersionUID = -3625620584270137839L;
     @CsvBindByName
     private Long totalPopulation;
 

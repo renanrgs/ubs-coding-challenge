@@ -5,6 +5,7 @@ import com.ubs.codingchallenge.web.dto.CountryDTO;
 import com.ubs.codingchallenge.web.model.CountryWrapper;
 import com.ubs.codingchallenge.web.dto.SubregionDTO;
 import com.ubs.codingchallenge.web.model.SubregionWrapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -27,6 +28,7 @@ public class CountryServiceImpl implements CountryService {
         this.client = client;
     }
 
+    @Cacheable(cacheNames = "biggest10")
     @Override
     public CountryWrapper findTenBiggestCountriesByRegion(String region) {
         List<CountryDTO> countries = client.findAll();
@@ -47,6 +49,7 @@ public class CountryServiceImpl implements CountryService {
                 .collect(Collectors.toList());
     }
 
+    @Cacheable(cacheNames = "subregionOver3Borders")
     @Override
     public CountryWrapper findBySubregionContainingOver3Boarders(String subregion) {
         List<CountryDTO> countries = client.findAll();
@@ -56,12 +59,7 @@ public class CountryServiceImpl implements CountryService {
         return wrapper;
     }
 
-    private CountryWrapper wrap(List<CountryDTO> countries) {
-        CountryWrapper countryWrapper = new CountryWrapper();
-        countryWrapper.setData(countries);
-        return countryWrapper;
-    }
-
+    @Cacheable(cacheNames = "subregionPopulation")
     @Override
     public SubregionWrapper findSubregionPopulation(String subregion) {
         List<CountryDTO> countries = client.findAll();
@@ -74,6 +72,12 @@ public class CountryServiceImpl implements CountryService {
         SubregionWrapper subregionWrapper = new SubregionWrapper();
         subregionWrapper.setData(singletonList(subregionDTO));
         return subregionWrapper;
+    }
+
+    private CountryWrapper wrap(List<CountryDTO> countries) {
+        CountryWrapper countryWrapper = new CountryWrapper();
+        countryWrapper.setData(countries);
+        return countryWrapper;
     }
 
     private List<CountryDTO> filterBySubRegionAndBoardersAmount(String subregion, List<CountryDTO> countries) {

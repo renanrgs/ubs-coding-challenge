@@ -17,10 +17,6 @@ class CountryClientIT {
     @Autowired
     private CountryClient client;
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
     void testFindAll(){
         List<CountryDTO> countries = client.findAll();

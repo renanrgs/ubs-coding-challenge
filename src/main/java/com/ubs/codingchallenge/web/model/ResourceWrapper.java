@@ -6,13 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResourceWrapper<T> {
+public class ResourceWrapper<T> implements Serializable {
 
+    private static final long serialVersionUID = -7427694300130301744L;
     @JsonValue
     private List<T> data;
 

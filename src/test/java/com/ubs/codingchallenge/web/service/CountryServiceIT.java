@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @SpringBootTest
-public class CountryServiceImplIT {
+public class CountryServiceIT {
 
     @Autowired
     private CountryService countryService;

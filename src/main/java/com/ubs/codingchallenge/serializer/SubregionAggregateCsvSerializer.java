@@ -1,8 +1,6 @@
 package com.ubs.codingchallenge.serializer;
 
 import com.opencsv.bean.AbstractBeanField;
-import com.opencsv.exceptions.CsvConstraintViolationException;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.ubs.codingchallenge.web.dto.CountryDTO;
 
 import java.util.List;
@@ -12,7 +10,7 @@ public class SubregionAggregateCsvSerializer extends AbstractBeanField<CountryDT
     private static final String newLineChar = "\n";
 
     @Override
-    protected Object convert(String s) throws CsvDataTypeMismatchException, CsvConstraintViolationException {
+    protected Object convert(String s) {
         //TODO - Deserialize
         return null;
     }

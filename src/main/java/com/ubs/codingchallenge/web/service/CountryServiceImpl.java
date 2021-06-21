@@ -37,8 +37,7 @@ public class CountryServiceImpl implements CountryService {
                 .filter(c -> c.getRegion().equalsIgnoreCase(region))
                 .collect(Collectors.toList());
         countries = getReverseSortedCountries(countries);
-        CountryWrapper countryWrapper = wrap(countries);
-        return countryWrapper;
+        return wrap(countries);
     }
 
     private List<CountryDTO> getReverseSortedCountries(List<CountryDTO> countries) {
@@ -55,8 +54,7 @@ public class CountryServiceImpl implements CountryService {
         List<CountryDTO> countries = client.findAll();
         fillCountryBorders(countries);
         countries = filterBySubRegionAndBoardersAmount(subregion, countries);
-        CountryWrapper wrapper = wrap(countries);
-        return wrapper;
+        return wrap(countries);
     }
 
     @Cacheable(cacheNames = "subregionPopulation")
@@ -112,7 +110,7 @@ public class CountryServiceImpl implements CountryService {
         Long totalPopulation = subregionDTO.getCountries()
                 .stream()
                 .map(CountryDTO::getPopulation)
-                .reduce(Long::sum).get();
+                .reduce(Long::sum).orElse(0L);
         subregionDTO.setTotalPopulation(totalPopulation);
     }
 }

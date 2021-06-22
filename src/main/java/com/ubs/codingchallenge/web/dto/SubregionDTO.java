@@ -2,7 +2,7 @@ package com.ubs.codingchallenge.web.dto;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
-import com.ubs.codingchallenge.serializer.csv.SubregionAggregateCsvSerializer;
+import com.ubs.codingchallenge.serializer.csv.SubregionCsvSerializer;
 import lombok.*;
 
 import java.io.Serializable;
@@ -20,7 +20,7 @@ public class SubregionDTO implements Serializable {
     private Long totalPopulation;
 
     @CsvBindByName
-    @CsvCustomBindByName(converter = SubregionAggregateCsvSerializer.class)
+    @CsvCustomBindByName(converter = SubregionCsvSerializer.class)
     private List<CountryDTO> countries;
 }
 

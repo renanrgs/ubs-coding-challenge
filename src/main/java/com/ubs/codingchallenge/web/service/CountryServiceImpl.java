@@ -51,7 +51,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Cacheable(cacheNames = "subregionOver3Borders")
     @Override
-    public CountryWrapper findBySubregionContainingOver3Boarders(String subregion) {
+    public CountryWrapper findBySubregionContainingOver3Borders(String subregion) {
         List<CountryDTO> countries = client.findAll();
         fillCountryBorders(countries);
         countries = filterBySubRegionAndBoardersAmount(subregion, countries);

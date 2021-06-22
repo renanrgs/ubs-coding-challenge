@@ -29,8 +29,6 @@ public class TestUtil {
 
         Arguments over3BordersCountries = Arguments.of(Arrays.asList(brazil, argentina,
                 bolivia, colombia, peru, suriname));
-        Arguments allSouthAmericaCountries = Arguments.of(Arrays.asList(brazil, argentina, bolivia, colombia, peru,
-                suriname, chile, ecuador, falkLandIsland, frenchGuiana, guiana, paraguay, southGeorgia, uruguay, venezuela));
 
         return Stream.of(over3BordersCountries);
     }
@@ -76,7 +74,7 @@ public class TestUtil {
         return Stream.of(oceaniaArguments);
     }
 
-    public static List<CountryDTO> oceaniaCountryWrapperPovider() throws JsonProcessingException {
+    public static List<CountryDTO> oceaniaDeserializedCountryProvider() throws JsonProcessingException {
 
         String json = "[{\"name\":\"Australia\",\"capital\":\"Canberra\",\"region\":\"Oceania\",\"subregion" +
                 "\":\"Australia and New Zealand\",\"population\":24117360,\"area\":7692024.0,\"borders\":[]," +
@@ -101,6 +99,84 @@ public class TestUtil {
                 ",\"alpha3Code\":\"WSM\"},{\"name\":\"Kiribati\",\"capital\":\"South Tarawa\",\"region\":\"Oceania" +
                 "\",\"subregion\":\"Micronesia\",\"population\":113400,\"area\":811.0,\"borders\":[],\"alpha3Code" +
                 "\":\"KIR\"}]";
+        ObjectMapper mapper = new ObjectMapper();
+        List<CountryDTO> countries = mapper.readValue(json, List.class);
+        return countries;
+    }
+
+    public static List<CountryDTO> southAmericaDeserializedCountryProvider() throws JsonProcessingException {
+        String json = "[{\"name\":\"Argentina\",\"capital\":\"Buenos Aires\",\"region\":\"Americas\",\"subregion" +
+                "\":\"South America\",\"population\":43590400,\"area\":2780400.0,\"borders\":[{\"name\":" +
+                "\"Bolivia (Plurinational State of)\",\"capital\":\"Sucre\",\"region\":\"Americas\",\"subregion" +
+                "\":\"South America\",\"population\":10985059,\"area\":1098581.0,\"alpha3Code\":\"BOL\"},{\"name" +
+                "\":\"Brazil\",\"capital\":\"Brasília\",\"region\":\"Americas\",\"subregion\":\"South America" +
+                "\",\"population\":206135893,\"area\":8515767.0,\"alpha3Code\":\"BRA\"},{\"name\":\"Chile\",\"capital" +
+                "\":\"Santiago\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":18191900," +
+                "\"area\":756102.0,\"alpha3Code\":\"CHL\"},{\"name\":\"Paraguay\",\"capital\":\"Asunción\",\"region" +
+                "\":\"Americas\",\"subregion\":\"South America\",\"population\":6854536,\"area\":406752.0,\"alpha3Code" +
+                "\":\"PRY\"},{\"name\":\"Uruguay\",\"capital\":\"Montevideo\",\"region\":\"Americas\",\"subregion\":" +
+                "\"South America\",\"population\":3480222,\"area\":181034.0,\"alpha3Code\":\"URY\"}],\"alpha3Code\":" +
+                "\"ARG\"},{\"name\":\"Bolivia (Plurinational State of)\",\"capital\":\"Sucre\",\"region\":\"Americas" +
+                "\",\"subregion\":\"South America\",\"population\":10985059,\"area\":1098581.0,\"borders\":[{\"name" +
+                "\":\"Argentina\",\"capital\":\"Buenos Aires\",\"region\":\"Americas\",\"subregion\":\"South America" +
+                "\",\"population\":43590400,\"area\":2780400.0,\"alpha3Code\":\"ARG\"},{\"name\":\"Brazil\",\"capita" +
+                "l\":\"Brasília\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population" +
+                "\":206135893,\"area\":8515767.0,\"alpha3Code\":\"BRA\"},{\"name\":\"Chile\",\"capital\":\"Santiago" +
+                "\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":18191900,\"area\":756102.0," +
+                "\"alpha3Code\":\"CHL\"},{\"name\":\"Paraguay\",\"capital\":\"Asunción\",\"region\":\"Americas\"," +
+                "\"subregion\":\"South America\",\"population\":6854536,\"area\":406752.0,\"alpha3Code\":\"PRY\"}," +
+                "{\"name\":\"Peru\",\"capital\":\"Lima\",\"region\":\"Americas\",\"subregion\":\"South America\"," +
+                "\"population\":31488700,\"area\":1285216.0,\"alpha3Code\":\"PER\"}],\"alpha3Code\":\"BOL\"}," +
+                "{\"name\":\"Brazil\",\"capital\":\"Brasília\",\"region\":\"Americas\",\"subregion\":" +
+                "\"South America\",\"population\":206135893,\"area\":8515767.0,\"borders\":[{\"name\":\"Argentina\"," +
+                "\"capital\":\"Buenos Aires\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population" +
+                "\":43590400,\"area\":2780400.0,\"alpha3Code\":\"ARG\"},{\"name\":\"Bolivia (Plurinational State of)" +
+                "\",\"capital\":\"Sucre\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population" +
+                "\":10985059,\"area\":1098581.0,\"alpha3Code\":\"BOL\"},{\"name\":\"Colombia\",\"capital\":\"Bogotá\"" +
+                ",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":48759958,\"area\":1141748.0," +
+                "\"alpha3Code\":\"COL\"},{\"name\":\"French Guiana\",\"capital\":\"Cayenne\",\"region\":\"Americas\"," +
+                "\"subregion\":\"South America\",\"population\":254541,\"area\":null,\"alpha3Code\":\"GUF\"},{\"name\":" +
+                "\"Guyana\",\"capital\":\"Georgetown\",\"region\":\"Americas\",\"subregion\":\"South America\",\"" +
+                "population\":746900,\"area\":214969.0,\"alpha3Code\":\"GUY\"},{\"name\":\"Paraguay\",\"capital\":" +
+                "\"Asunción\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":6854536,\"area" +
+                "\":406752.0,\"alpha3Code\":\"PRY\"},{\"name\":\"Peru\",\"capital\":\"Lima\",\"region\":\"Americas\"," +
+                "\"subregion\":\"South America\",\"population\":31488700,\"area\":1285216.0,\"alpha3Code\":\"PER\"}," +
+                "{\"name\":\"Suriname\",\"capital\":\"Paramaribo\",\"region\":\"Americas\",\"subregion\":\"South America" +
+                "\",\"population\":541638,\"area\":163820.0,\"alpha3Code\":\"SUR\"},{\"name\":\"Uruguay\",\"capital\":" +
+                "\"Montevideo\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":3480222," +
+                "\"area\":181034.0,\"alpha3Code\":\"URY\"},{\"name\":\"Venezuela (Bolivarian Republic of)\",\"capital" +
+                "\":\"Caracas\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":31028700,\"" +
+                "area\":916445.0,\"alpha3Code\":\"VEN\"}],\"alpha3Code\":\"BRA\"},{\"name\":\"Colombia\",\"capital" +
+                "\":\"Bogotá\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":48759958,\"" +
+                "area\":1141748.0,\"borders\":[{\"name\":\"Brazil\",\"capital\":\"Brasília\",\"region\":\"America" +
+                "s\",\"subregion\":\"South America\",\"population\":206135893,\"area\":8515767.0,\"alpha3Code\":" +
+                "\"BRA\"},{\"name\":\"Ecuador\",\"capital\":\"Quito\",\"region\":\"Americas\",\"subregion\":\"" +
+                "South America\",\"population\":16545799,\"area\":276841.0,\"alpha3Code\":\"ECU\"},{\"name\":\"Panama\"" +
+                ",\"capital\":\"Panama City\",\"region\":\"Americas\",\"subregion\":\"Central America\",\"population" +
+                "\":3814672,\"area\":75417.0,\"alpha3Code\":\"PAN\"},{\"name\":\"Peru\",\"capital\":\"Lima\",\"region" +
+                "\":\"Americas\",\"subregion\":\"South America\",\"population\":31488700,\"area\":1285216.0,\"alpha3Cod" +
+                "e\":\"PER\"},{\"name\":\"Venezuela (Bolivarian Republic of)\",\"capital\":\"Caracas\",\"region\":" +
+                "\"Americas\",\"subregion\":\"South America\",\"population\":31028700,\"area\":916445.0,\"alpha3Code" +
+                "\":\"VEN\"}],\"alpha3Code\":\"COL\"},{\"name\":\"Peru\",\"capital\":\"Lima\",\"region\":\"Americas" +
+                "\",\"subregion\":\"South America\",\"population\":31488700,\"area\":1285216.0,\"borders\":[{\"name\":\"" +
+                "Bolivia (Plurinational State of)\",\"capital\":\"Sucre\",\"region\":\"Americas\",\"subregion\":" +
+                "\"South America\",\"population\":10985059,\"area\":1098581.0,\"alpha3Code\":\"BOL\"},{\"name\":\"Brazil\"" +
+                ",\"capital\":\"Brasília\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population" +
+                "\":206135893,\"area\":8515767.0,\"alpha3Code\":\"BRA\"},{\"name\":\"Chile\",\"capital\":\"Santiago\"," +
+                "\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":18191900,\"area\":756102.0," +
+                "\"alpha3Code\":\"CHL\"},{\"name\":\"Colombia\",\"capital\":\"Bogotá\",\"region\":\"Americas\",\"subregion" +
+                "\":\"South America\",\"population\":48759958,\"area\":1141748.0,\"alpha3Code\":\"COL\"},{\"name\":\"Ecuador" +
+                "\",\"capital\":\"Quito\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":16545799," +
+                "\"area\":276841.0,\"alpha3Code\":\"ECU\"}],\"alpha3Code\":\"PER\"},{\"name\":\"Suriname\",\"capital\":" +
+                "\"Paramaribo\",\"region\":\"Americas\",\"subregion\":\"South America\",\"population\":541638,\"area" +
+                "\":163820.0,\"borders\":[{\"name\":\"Brazil\",\"capital\":\"Brasília\",\"region\":\"Americas\"," +
+                "\"subregion\":\"South America\",\"population\":206135893,\"area\":8515767.0,\"alpha3Code\":\"BRA\"}," +
+                "{\"name\":\"French Guiana\",\"capital\":\"Cayenne\",\"region\":\"Americas\",\"subregion\":\"South America" +
+                "\",\"population\":254541,\"area\":null,\"alpha3Code\":\"GUF\"},{\"name\":\"France\",\"capital\":" +
+                "\"Paris\",\"region\":\"Europe\",\"subregion\":\"Western Europe\",\"population\":66710000,\"area\":640679.0," +
+                "\"alpha3Code\":\"FRA\"},{\"name\":\"Guyana\",\"capital\":\"Georgetown\",\"region\":\"Americas\"," +
+                "\"subregion\":\"South America\",\"population\":746900,\"area\":214969.0,\"alpha3Code\":\"GUY\"}]," +
+                "\"alpha3Code\":\"SUR\"}]";
         ObjectMapper mapper = new ObjectMapper();
         List<CountryDTO> countries = mapper.readValue(json, List.class);
         return countries;

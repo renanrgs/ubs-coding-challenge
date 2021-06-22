@@ -5,6 +5,6 @@ import com.ubs.codingchallenge.web.model.SubregionWrapper;
 
 public interface CountryService {
     CountryWrapper findTenBiggestCountriesByRegion(String region);
-    CountryWrapper findBySubregionContainingOver3Boarders(String subregion);
+    CountryWrapper findBySubregionContainingOver3Borders(String subregion);
     SubregionWrapper findSubregionPopulation(String subregion);
 }

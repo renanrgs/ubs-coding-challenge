@@ -32,7 +32,7 @@ public class CsvHttpMessageConverter<T, L extends ResourceWrapper<T>>
 
     @Override
     protected L readInternal (Class<? extends L> clazz, HttpInputMessage inputMessage)
-            throws IOException, HttpMessageNotReadableException {
+            throws HttpMessageNotReadableException {
         //TODO - Deserialize
         return null;
     }

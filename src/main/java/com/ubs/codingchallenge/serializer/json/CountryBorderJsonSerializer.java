@@ -21,7 +21,7 @@ public class CountryBorderJsonSerializer extends JsonSerializer<List<CountryDTO>
     }
 
     private CountryDTO buildBorder(List<CountryDTO> countries, int index) {
-        CountryDTO copy = CountryDTO.builder()
+        CountryDTO border = CountryDTO.builder()
                 .borders(null)
                 .alpha3Code(countries.get(index).getAlpha3Code())
                 .area(countries.get(index).getArea())
@@ -30,6 +30,6 @@ public class CountryBorderJsonSerializer extends JsonSerializer<List<CountryDTO>
                 .population(countries.get(index).getPopulation())
                 .subregion(countries.get(index).getSubregion()).region(countries.get(index).getRegion())
                 .build();
-        return copy;
+        return border;
     }
 }

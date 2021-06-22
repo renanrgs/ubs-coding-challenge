@@ -24,7 +24,7 @@ public class CountryController {
     @GetMapping(value = "/subregion/{subregion}")
     public @ResponseBody
     CountryWrapper getCountriesBySubRegionContainingOver3Boardes(@PathVariable String subregion) {
-        return countryService.findBySubregionContainingOver3Boarders(subregion);
+        return countryService.findBySubregionContainingOver3Borders(subregion);
     }
 
     @GetMapping(value = "/subregion/{subregion}/population")

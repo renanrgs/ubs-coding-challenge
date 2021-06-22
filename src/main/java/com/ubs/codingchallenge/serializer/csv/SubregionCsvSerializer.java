@@ -5,7 +5,7 @@ import com.ubs.codingchallenge.web.dto.CountryDTO;
 
 import java.util.List;
 
-public class SubregionAggregateCsvSerializer extends AbstractBeanField<CountryDTO, Long>{
+public class SubregionCsvSerializer extends AbstractBeanField<CountryDTO, Long>{
 
     private static final String newLineChar = "\n";
 

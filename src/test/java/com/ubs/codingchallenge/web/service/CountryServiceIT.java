@@ -43,7 +43,7 @@ public class CountryServiceIT {
         String southamerica = "southamerica";
 
         //when
-        CountryWrapper countries = countryService.findBySubregionContainingOver3Boarders(southamerica);
+        CountryWrapper countries = countryService.findBySubregionContainingOver3Borders(southamerica);
 
         //then
         assertThat(countries).isNotNull();

@@ -14,7 +14,7 @@ jobs:
 
       - run:
           name: Test
-          command: mvn test
+          command: mvn clean package docker:build
 
 workflows:
   sample:

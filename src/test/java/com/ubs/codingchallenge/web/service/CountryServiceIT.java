@@ -1,6 +1,6 @@
 package com.ubs.codingchallenge.web.service;
 
-import com.ubs.codingchallenge.util.TestUtil;
+import com.ubs.codingchallenge.util.Bootstrap;
 import com.ubs.codingchallenge.web.dto.CountryDTO;
 import com.ubs.codingchallenge.web.model.CountryWrapper;
 import com.ubs.codingchallenge.web.model.SubregionWrapper;
@@ -83,12 +83,12 @@ public class CountryServiceIT {
         String region = "oceania";
 
         //When
-        CountryWrapper wrapper = countryService.findTenBiggestCountriesByRegion(region);
-        CountryWrapper cachedWrapper = (CountryWrapper) getCache("biggest10", region, CountryWrapper.class);
+        CountryWrapper countries = countryService.findTenBiggestCountriesByRegion(region);
+        CountryWrapper cachedCountries = (CountryWrapper) getCache("biggest10", region, CountryWrapper.class);
 
         //Then
-        assertThat(cachedWrapper).isNotNull();
-        assertThat(cachedWrapper.getData()).containsExactlyElementsOf(wrapper.getData());
+        assertThat(cachedCountries).isNotNull();
+        assertThat(cachedCountries.getData()).containsExactlyElementsOf(countries.getData());
     }
 
     @Test
@@ -133,16 +133,16 @@ public class CountryServiceIT {
 
     @SuppressWarnings("unused")
     private static Stream<Arguments> southAmericaCountriesProvider() {
-        return TestUtil.southAmericaCountriesProvider();
+        return Bootstrap.southAmericaCountriesProvider();
     }
 
     @SuppressWarnings("unused")
     private static Stream<Arguments> allSouthAmericaCountriesProvider() {
-        return TestUtil.allSouthAmericaCountriesProvider();
+        return Bootstrap.allSouthAmericaCountriesProvider();
     }
 
     @SuppressWarnings("unused")
     private static Stream<Arguments> oceaniaCountriesProvider() {
-        return TestUtil.oceaniaCountriesProvider();
+        return Bootstrap.oceaniaCountriesProvider();
     }
 }

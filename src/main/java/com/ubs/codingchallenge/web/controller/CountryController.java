@@ -15,13 +15,13 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-    @GetMapping(value = "/biggest/{region}")
+    @GetMapping(value = "/region/{region}/biggest")
     public @ResponseBody
     CountryWrapper get10BiggestCountriesByRegion(@PathVariable String region) {
         return countryService.findTenBiggestCountriesByRegion(region);
     }
 
-    @GetMapping(value = "/subregion/{subregion}")
+    @GetMapping(value = "/subregion/{subregion}/borders")
     public @ResponseBody
     CountryWrapper getCountriesBySubRegionContainingOver3Boardes(@PathVariable String subregion) {
         return countryService.findBySubregionContainingOver3Borders(subregion);

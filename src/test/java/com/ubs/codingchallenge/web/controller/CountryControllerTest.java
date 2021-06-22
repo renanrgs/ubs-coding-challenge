@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static com.ubs.codingchallenge.util.TestUtil.*;
+import static com.ubs.codingchallenge.util.Bootstrap.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,7 +36,7 @@ class CountryControllerTest {
 
         //when
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/biggest/" + region).accept(APPLICATION_JSON));
+                .get("/api/v1/country/region/{region}/biggest", region).accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
@@ -52,7 +52,7 @@ class CountryControllerTest {
 
         //when
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/biggest/" + region).accept(TEXT_CSV));
+                .get("/api/v1/country/region/{region}/biggest", region).accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())
@@ -67,7 +67,7 @@ class CountryControllerTest {
 
         //when
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/" + subregion).accept(APPLICATION_JSON));
+                .get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
@@ -83,7 +83,7 @@ class CountryControllerTest {
 
         //when
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/" + subregion).accept(TEXT_CSV));
+                .get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())
@@ -99,7 +99,7 @@ class CountryControllerTest {
 
         //When
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/" + subregion + "/population").accept(APPLICATION_JSON));
+                .get("/api/v1/country/subregion/{subregion}/population", subregion).accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
@@ -116,7 +116,7 @@ class CountryControllerTest {
 
         //When
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/" + subregion + "/population").accept(TEXT_CSV));
+                .get("/api/v1/country/subregion/{subregion}/population", subregion).accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())

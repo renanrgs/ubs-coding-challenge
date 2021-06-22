@@ -2,8 +2,6 @@ package com.ubs.codingchallenge.serializer.csv;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.AbstractBeanField;
-import com.opencsv.exceptions.CsvConstraintViolationException;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.ubs.codingchallenge.web.dto.CountryDTO;
 
 import java.util.List;

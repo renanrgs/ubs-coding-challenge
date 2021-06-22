@@ -95,12 +95,12 @@ public class CountryServiceImpl implements CountryService {
 
     private void fillCountryBorders(List<CountryDTO> countries) {
         final Map<String, CountryDTO> mapCountries = new HashMap<>();
-        countries.forEach(c -> mapCountries.put(c.getAlpha3Code(), c));
+        countries.forEach(country -> mapCountries.put(country.getAlpha3Code(), country));
 
-        countries.forEach(c -> {
-            if (!isEmpty(c) && !c.getBorders().isEmpty()) {
-                for (int i = 0; i < c.getBorders().size(); i++) {
-                    c.getBorders().set(i, mapCountries.get(c.getBorders().get(i).getAlpha3Code()));
+        countries.forEach(country -> {
+            if (!isEmpty(country) && !country.getBorders().isEmpty()) {
+                for (int i = 0; i < country.getBorders().size(); i++) {
+                    country.getBorders().set(i, mapCountries.get(country.getBorders().get(i).getAlpha3Code()));
                 }
             }
         });

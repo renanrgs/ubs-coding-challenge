@@ -9,12 +9,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
 import static com.ubs.codingchallenge.util.Bootstrap.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,8 +35,7 @@ class CountryControllerTest {
         List<CountryDTO> countries = oceaniaCountryJSONProvider();
 
         //when
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/region/{region}/biggest", region).accept(APPLICATION_JSON));
+        ResultActions result = mockMvc.perform(get("/api/v1/country/region/{region}/biggest", region).accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
@@ -51,8 +50,7 @@ class CountryControllerTest {
         List<CountryDTO> countries = oceaniaCountryJSONProvider();
 
         //when
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/region/{region}/biggest", region).accept(TEXT_CSV));
+        ResultActions result = mockMvc.perform(get("/api/v1/country/region/{region}/biggest", region).accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())
@@ -66,8 +64,7 @@ class CountryControllerTest {
         List<CountryDTO> countries = southAmericaCountryJSONProvider();
 
         //when
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(APPLICATION_JSON));
+        ResultActions result = mockMvc.perform(get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
@@ -82,8 +79,7 @@ class CountryControllerTest {
         List<CountryDTO> countries = southAmericaCountryJSONProvider();
 
         //when
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(TEXT_CSV));
+        ResultActions result = mockMvc.perform(get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())
@@ -98,8 +94,7 @@ class CountryControllerTest {
         List<SubregionDTO> subregionWrapper = allSouthAmericaJSONProvider();
 
         //When
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/{subregion}/population", subregion).accept(APPLICATION_JSON));
+        ResultActions result = mockMvc.perform(get("/api/v1/country/subregion/{subregion}/population", subregion).accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
@@ -115,8 +110,8 @@ class CountryControllerTest {
         List<SubregionDTO> subregionWrapper = allSouthAmericaJSONProvider();
 
         //When
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/country/subregion/{subregion}/population", subregion).accept(TEXT_CSV));
+        ResultActions result = mockMvc.perform(
+                get("/api/v1/country/subregion/{subregion}/population", subregion).accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())

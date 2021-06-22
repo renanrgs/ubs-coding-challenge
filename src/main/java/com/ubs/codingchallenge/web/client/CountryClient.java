@@ -10,6 +10,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class responsible for consuming https://restcountries.eu API
+ */
 @Component
 @ConfigurationProperties(prefix = "com.ubs", ignoreUnknownFields = false)
 public class CountryClient {
@@ -36,6 +39,10 @@ public class CountryClient {
         this.params = params;
     }
 
+    /**
+     * Return all countries from https://restcountries.eu
+     * @return List with all countries
+     */
     public List<CountryDTO> findAll() {
         ResponseEntity<CountryDTO[]> responseEntity = restTemplate
                 .getForEntity(apiHost + uri + params, CountryDTO[].class);

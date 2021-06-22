@@ -15,6 +15,11 @@ public class SubregionCsvSerializer extends AbstractBeanField<CountryDTO, Long>{
         return null;
     }
 
+    /**
+     * Serialize nested field or collections
+     * @param obj Field to be serialized
+     * @return String containing the serialized data
+     */
     @Override
     protected String convertToWrite(Object obj) {
         final StringBuilder data = new StringBuilder();

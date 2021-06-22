@@ -17,14 +17,27 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ *
+ * @param <T> Main Dto to be shown in json response
+ * @param <L> Dto Wrapper to handle stackoverflow exceptions
+ */
 @Component
 public class CsvHttpMessageConverter<T, L extends ResourceWrapper<T>>
         extends AbstractHttpMessageConverter<L> {
 
+    /**
+     * Set text/csv as a supported media type
+     */
     public CsvHttpMessageConverter () {
         super(new MediaType("text", "csv"));
     }
 
+    /**
+     * It checks if Wrapper used is compatible with Resource Wrapper
+     * @param clazz
+     * @return
+     */
     @Override
     protected boolean supports (Class<?> clazz) {
         return ResourceWrapper.class.isAssignableFrom(clazz);
@@ -37,6 +50,13 @@ public class CsvHttpMessageConverter<T, L extends ResourceWrapper<T>>
         return null;
     }
 
+    /**
+     * Take a Dto, serialize it and place it into response body
+     * @param data Wrapper list containing the data list to be written
+     * @param outputMessage Responsible for giving access to response properties
+     * @throws IOException
+     * @throws HttpMessageNotWritableException
+     */
     @SuppressWarnings("unchecked")
     @Override
     protected void writeInternal (L data, HttpOutputMessage outputMessage)
@@ -59,6 +79,11 @@ public class CsvHttpMessageConverter<T, L extends ResourceWrapper<T>>
         }
     }
 
+    /**
+     * Converts generics to the actual type of the object passed
+     * @param type
+     * @return Actual type of object (CountryDTO or SubregionDTO)
+     */
     @SuppressWarnings("unchecked")
     private Class<T> toBeanType (Type type) {
         return (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];

@@ -8,6 +8,11 @@ import java.util.List;
 
 public class CountryCsvSerializer extends AbstractBeanField<CountryDTO, Integer> {
 
+    /**
+     * Serialize nested field or collections
+     * @param obj Field to be serialized
+     * @return String containing the serialized data
+     */
     @Override
     protected String convertToWrite(Object obj) {
         StringBuilder data = new StringBuilder();

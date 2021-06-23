@@ -1,0 +1,6 @@
+version: '3'
+  countryservice:
+    image: renanrgs/countryapi
+    ports:
+      - "8081:8081"
+    restart: always

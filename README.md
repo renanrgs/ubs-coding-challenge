@@ -212,20 +212,3 @@ if (!hljs.initHighlighting.called) {
   hljs.initHighlighting.called = true;
   [].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightElement(el) })
 }
-</script><script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-});
-</script>
-<script src="http://localhost:63342/ead61b63-b0a6-4ff2-a49a-86be75ccfd1a/scripts/MathJax/MathJax.js?_ijt=jq0ijsihn9c0ee7q5etg47i6t4&amp;config=TeX-MML-AM_HTMLorMML"></script>
-</body></html>

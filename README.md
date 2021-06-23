@@ -207,8 +207,4 @@ Content-Length: 10251
 </div>
 </div>
 </div>
-</div><div id="footer"></div><script src='http://localhost:63342/ead61b63-b0a6-4ff2-a49a-86be75ccfd1a/scripts/highlightjs/highlight.min.js?_ijt=4n4u4pkonp68cjhep30s9452qg'></script><script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true;
-  [].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightElement(el) })
-}
+</div><div id="footer"></div><script src='http://localhost:63342/ead61b63-b0a6-4ff2-a49a-86be75ccfd1a/scripts/highlightjs/highlight.min.js?_ijt=4n4u4pkonp68cjhep30s9452qg'>

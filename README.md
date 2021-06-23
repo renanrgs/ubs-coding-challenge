@@ -9,13 +9,13 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>GET 10 BIGGEST COUNTRIES BY REGION</em></p>
+<p><em>GET 10 BIGGEST COUNTRIES BY REGION -> http://159.65.221.35/api/v1/country/region/{region}/biggest</em></p>
 </li>
 <li>
-<p><em>GET COUNTRIES OF A SUBREGION HAVING OVER 3 BORDERS</em></p>
+<p><em>GET COUNTRIES OF A SUBREGION HAVING OVER 3 BORDERS -> http://159.65.221.35/api/v1/country/subregion/{subregion}/borders</em></p>
 </li>
 <li>
-<p><em>GET COUNTRIES OF A SUBREGION PROVIDING THE SUBREGION POPULATION</em>
+<p><em>GET COUNTRIES OF A SUBREGION PROVIDING THE SUBREGION POPULATION -> http://159.65.221.35/api/v1/country/subregion/{subregion}/population</em>
 -</p>
 </li>
 </ol>

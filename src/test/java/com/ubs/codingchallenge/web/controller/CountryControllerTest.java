@@ -58,32 +58,11 @@ class CountryControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andExpect(content().json(objectMapper.writeValueAsString(countries), true));
-        assertDocumented(result, "region", "v1/country/region");
+        assertDocumented(result, "region", "v1/country/region",
+                "Region of desired list of countries to get.");
     }
 
-    private ResultActions assertDocumented(ResultActions resultActions, String pathParameter, String id) throws Exception {
-        return resultActions.andDo(document(id,
-                pathParameters(
-                        parameterWithName(pathParameter).description("Region of desired list of countries to get.")),
-                responseFields(
-                        fieldWithPath("[].name").description("Name of the Country."),
-                        fieldWithPath("[].capital").description("Capital of the Country."),
-                        fieldWithPath("[].region").description("Region of the Country (Europe, Oceania, Americas, etc)."),
-                        fieldWithPath("[].subregion").description("Subregion of the Country (South America, Easter Europe, Western Europe, etc)."),
-                        fieldWithPath("[].population").description("Population of the Country."),
-                        fieldWithPath("[].area").description("Area of the Country."),
-                        fieldWithPath("[].borders").description("Borders of the Country."),
-                        fieldWithPath("[].borders[].name").ignored(),
-                        fieldWithPath("[].borders[].capital").ignored(),
-                        fieldWithPath("[].borders[].region").ignored(),
-                        fieldWithPath("[].borders[].subregion").ignored(),
-                        fieldWithPath("[].borders[].population").ignored(),
-                        fieldWithPath("[].borders[].area").optional().ignored(),
-                        fieldWithPath("[].borders[].alpha3Code").ignored(),
-                        fieldWithPath("[].alpha3Code").description("Borders of the Country.")
-                )
-        ));
-    }
+
 
     @Test
     void givenRegionThenReturnCountryListCSV() throws Exception {
@@ -92,11 +71,15 @@ class CountryControllerTest {
         List<CountryDTO> countries = oceaniaCountryJSONProvider();
 
         //when
-        ResultActions result = mockMvc.perform(get("/api/v1/country/region/{region}/biggest", region).accept(TEXT_CSV));
+        ResultActions result =
+                mockMvc.perform(get("/api/v1/country/region/{region}/biggest", region)
+                        .accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(TEXT_CSV));
+                .andExpect(content().contentTypeCompatibleWith(TEXT_CSV)).andDo(document("v1/country/regioncsv",
+                pathParameters(
+                        parameterWithName("region").description("Region of desired list of countries to get."))));
     }
 
     @Test
@@ -106,27 +89,34 @@ class CountryControllerTest {
         List<CountryDTO> countries = southAmericaCountryJSONProvider();
 
         //when
-        ResultActions result = mockMvc.perform(get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(APPLICATION_JSON));
+        ResultActions result =
+                mockMvc.perform(get("/api/v1/country/subregion/{subregion}/borders", subregion)
+                .accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andExpect(content().json(objectMapper.writeValueAsString(countries), true));
-        assertDocumented(result, "subregion", "v1/country/subregion/borders");
+        assertDocumented(result, "subregion", "v1/country/subregion/borders",
+                "Subregion of desired list of countries");
     }
 
     @Test
     void givenSubregionThenReturnCountryListHavingOver3BordersCSV() throws Exception {
         //Given
         String subregion = "southamerica";
-        List<CountryDTO> countries = southAmericaCountryJSONProvider();
 
         //when
-        ResultActions result = mockMvc.perform(get("/api/v1/country/subregion/{subregion}/borders", subregion).accept(TEXT_CSV));
+        ResultActions result =
+                mockMvc.perform(get("/api/v1/country/subregion/{subregion}/borders", subregion)
+                .accept(TEXT_CSV));
 
         //Then
         result.andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(TEXT_CSV));
+                .andExpect(content()
+                        .contentTypeCompatibleWith(TEXT_CSV)).andDo(document("v1/country/subregion/borderscsv",
+                pathParameters(
+                        parameterWithName("subregion").description("Subregion of desired list of countries."))));
     }
 
     @Test
@@ -137,14 +127,16 @@ class CountryControllerTest {
         List<SubregionDTO> subregionWrapper = allSouthAmericaJSONProvider();
 
         //When
-        ResultActions result = mockMvc.perform(get("/api/v1/country/subregion/{subregion}/population", subregion).accept(APPLICATION_JSON));
+        ResultActions result =
+                mockMvc.perform(get("/api/v1/country/subregion/{subregion}/population", subregion)
+                .accept(APPLICATION_JSON));
 
         //Then
         result.andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                     .andExpect(content().json(objectMapper.writeValueAsString(subregionWrapper), false)).andDo(document("v1/country/subregion/population",
                 pathParameters(
-                        parameterWithName("subregion").description("Region of desired list of countries to get.")),
+                        parameterWithName("subregion").description("Subregion of desired list of countries")),
                 responseFields(
                         fieldWithPath("[].totalPopulation").description("Subregion population."),
                         fieldWithPath("[].countries[].name").description("Name of the Country."),
@@ -173,7 +165,11 @@ class CountryControllerTest {
 
         //When
         ResultActions result = mockMvc.perform(
-                get("/api/v1/country/subregion/{subregion}/population", subregion).accept(TEXT_CSV));
+                get("/api/v1/country/subregion/{subregion}/population", subregion)
+                        .accept(TEXT_CSV))
+                .andDo(document("v1/country/subregion/populationcsv",
+                pathParameters(
+                        parameterWithName("subregion").description("Region of desired list of countries to get."))));
 
         //Then
         result.andExpect(status().isOk())

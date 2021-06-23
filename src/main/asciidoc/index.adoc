@@ -1,4 +1,4 @@
-= Country API Service JSON Docs
+= Country API Service JSON/CSV Docs
 Renan Silva;
 :doctype: book
 :icons: font
@@ -17,17 +17,21 @@ API developed to get information on countries. The API has three main endpoints:
 One showing how to make a request using cURL:
 
 include::{snippets}/v1/country/region/curl-request.adoc[]
+include::{snippets}/v1/country/regioncsv/curl-request.adoc[]
 
 One showing the HTTP request:
 
 include::{snippets}/v1/country/region/http-request.adoc[]
+include::{snippets}/v1/country/regioncsv/http-request.adoc[]
 
 And one showing the HTTP response:
 
 include::{snippets}/v1/country/region/http-response.adoc[]
+include::{snippets}/v1/country/regioncsv/http-response.adoc[]
 
 Response Body:
 include::{snippets}/v1/country/region/response-body.adoc[]
+include::{snippets}/v1/country/regioncsv/response-body.adoc[]
 
 Response Fields:
 include::{snippets}/v1/country/region/response-fields.adoc[]
@@ -37,32 +41,46 @@ include::{snippets}/v1/country/region/response-fields.adoc[]
 One showing how to make a request using cURL:
 
 include::{snippets}/v1/country/subregion/borders/curl-request.adoc[]
+include::{snippets}/v1/country/subregion/borderscsv/curl-request.adoc[]
 
 One showing the HTTP request:
 
 include::{snippets}/v1/country/subregion/borders/http-request.adoc[]
+include::{snippets}/v1/country/subregion/borderscsv/http-request.adoc[]
 
 And one showing the HTTP response:
 
 include::{snippets}/v1/country/subregion/borders/http-response.adoc[]
+include::{snippets}/v1/country/subregion/borderscsv/http-response.adoc[]
 
 Response Body:
 include::{snippets}/v1/country/subregion/borders/response-body.adoc[]
+include::{snippets}/v1/country/subregion/borderscsv/response-body.adoc[]
+
+Response Fields:
+include::{snippets}/v1/country/subregion/borders/response-fields.adoc[]
 
 === III. GET COUNTRIES OF A SUBREGION PROVIDING THE SUBREGION POPULATION
 
 One showing how to make a request using cURL:
 
 include::{snippets}/v1/country/subregion/population/curl-request.adoc[]
+include::{snippets}/v1/country/subregion/populationcsv/curl-request.adoc[]
 
 One showing the HTTP request:
 
 include::{snippets}/v1/country/subregion/population/http-request.adoc[]
+include::{snippets}/v1/country/subregion/populationcsv/http-request.adoc[]
 
 And one showing the HTTP response:
 
 include::{snippets}/v1/country/subregion/population/http-response.adoc[]
+include::{snippets}/v1/country/subregion/populationcsv/http-response.adoc[]
 
 Response Body:
 include::{snippets}/v1/country/subregion/population/response-body.adoc[]
+include::{snippets}/v1/country/subregion/populationcsv/response-body.adoc[]
+
+Response Fields:
+include::{snippets}/v1/country/subregion/population/response-fields.adoc[]
 

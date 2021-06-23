@@ -6,10 +6,17 @@ import com.ubs.codingchallenge.web.dto.CountryDTO;
 import com.ubs.codingchallenge.web.dto.SubregionDTO;
 import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 
 public class Bootstrap {
 
@@ -74,6 +81,31 @@ public class Bootstrap {
     public static Stream<Arguments> oceaniaCountriesProvider() {
         Arguments oceaniaArguments = Arguments.of(oceaniaCountries());
         return Stream.of(oceaniaArguments);
+    }
+
+    public static ResultActions assertDocumented(ResultActions resultActions, String pathParameter, String id,
+                                                 Object pathParameterDescription) throws Exception {
+        return resultActions.andDo(document(id,
+                pathParameters(
+                        parameterWithName(pathParameter).description(pathParameterDescription)),
+                responseFields(
+                        fieldWithPath("[].name").description("Name of the Country."),
+                        fieldWithPath("[].capital").description("Capital of the Country."),
+                        fieldWithPath("[].region").description("Region of the Country (Europe, Oceania, Americas, etc)."),
+                        fieldWithPath("[].subregion").description("Subregion of the Country (South America, Easter Europe, Western Europe, etc)."),
+                        fieldWithPath("[].population").description("Population of the Country."),
+                        fieldWithPath("[].area").description("Area of the Country."),
+                        fieldWithPath("[].borders").description("Borders of the Country."),
+                        fieldWithPath("[].borders[].name").ignored(),
+                        fieldWithPath("[].borders[].capital").ignored(),
+                        fieldWithPath("[].borders[].region").ignored(),
+                        fieldWithPath("[].borders[].subregion").ignored(),
+                        fieldWithPath("[].borders[].population").ignored(),
+                        fieldWithPath("[].borders[].area").optional().ignored(),
+                        fieldWithPath("[].borders[].alpha3Code").ignored(),
+                        fieldWithPath("[].alpha3Code").description("Alpha3 Code of the country (BRA, FRA, POL).")
+                )
+        ));
     }
 
     public static List<CountryDTO> oceaniaCountryJSONProvider() throws JsonProcessingException {

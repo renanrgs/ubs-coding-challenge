@@ -4,7 +4,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>API developed to get information on countries. The API has three main endpoints:</p>
+<p>API developed to get information on countries. The API has three main endpoints which ControllerTest generated the documentation:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
